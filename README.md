@@ -26,7 +26,7 @@ This is a full-stack Task Management System designed to enable users to manage t
    - A user-friendly form to add tasks with a description and due date.
    - A dynamic task list displaying all tasks with options to delete and update.
 2. **Task Filtering**:
-   - Filter tasks by "Due Today" or "Overdue" statuses.
+   - Filter tasks by "All", "Today" or "Overdue" statuses.
 3. **Real-time Task Count**:
    - Display the total number of tasks.
 4. **Modern UI**:
