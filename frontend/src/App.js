@@ -38,7 +38,7 @@ function App() {
               element={<PrivateRoute element={<TaskManager />} />}
             />
 
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<PrivateRoute element={<Home />} />} />
             <Route path="/about" element={<About />} />
 
             <Route path="*" element={<NoMatch />} />

@@ -23,6 +23,7 @@ function Header() {
     handleNavigateTo,
     handleOnLogout,
     validateRoutes,
+    isAuthenticated,
   } = useHeaders();
 
   return (
@@ -98,14 +99,16 @@ function Header() {
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Logout">
-              <IconButton
-                onClick={handleOnLogout}
-                sx={{ p: 0, color: "white" }}
-              >
-                <LogoutIcon />
-              </IconButton>
-            </Tooltip>
+            {isAuthenticated && (
+              <Tooltip title="Logout">
+                <IconButton
+                  onClick={handleOnLogout}
+                  sx={{ p: 0, color: "white" }}
+                >
+                  <LogoutIcon />
+                </IconButton>
+              </Tooltip>
+            )}
           </Box>
         </Toolbar>
       </Container>

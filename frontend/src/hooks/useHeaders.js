@@ -72,6 +72,7 @@ function useHeaders() {
     handleNavigateTo,
     handleOnLogout,
     validateRoutes,
+    isAuthenticated,
   };
 }
 
