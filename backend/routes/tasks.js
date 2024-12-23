@@ -2,6 +2,7 @@ const express = require("express");
 const TaskSchema = require("../models/task.model");
 const uuid = require("uuid").v4;
 const { filterList } = require("../constants");
+const authMiddleware = require("../middleware/authmiddleware");
 
 const router = express.Router();
 
@@ -10,7 +11,7 @@ const handleError = (res, message, statusCode = 500) => {
   return res.status(statusCode).json({ message });
 };
 
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   try {
     const tasks = await TaskSchema.find().lean();
     const taskList = tasks.map(
@@ -29,7 +30,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authMiddleware, async (req, res) => {
   const { title, description, dueDate, createdBy } = req.body;
 
   if (!title || !description || !dueDate) {
@@ -51,7 +52,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
   const { title, description, dueDate, createdBy } = req.body;
 
@@ -73,7 +74,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   if (!id) {
@@ -91,7 +92,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-router.get("/filter", async (req, res) => {
+router.get("/filter", authMiddleware, async (req, res) => {
   const { status } = req.query;
   const timezone = req.headers.timezone || "Asia/Kolkata";
 

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { setMessage } from "./authSlice";
+import { accessToken } from "../utils/localStorage";
 
 const initialState = {
   tasks: [],
@@ -63,7 +64,7 @@ export function getTasks() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        // "Authorization": `Bearer ${localStorage.getItem("accessToken")}`,
+        Authorization: `Bearer ${accessToken.getAccessToken()}`,
       },
     })
       .then((response) => {
@@ -85,6 +86,7 @@ export function createTask({ title, description, dueDate, createdBy }) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken.getAccessToken()}`,
       },
       body: JSON.stringify({
         title,
@@ -114,6 +116,7 @@ export function editTask({ id, title, description, dueDate, createdBy }) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken.getAccessToken()}`,
       },
       body: JSON.stringify({
         title,
@@ -146,6 +149,7 @@ export function deleteTask({ id }) {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken.getAccessToken()}`,
       },
       //   body: JSON.stringify({ id }),
     })
@@ -169,6 +173,7 @@ export function filterTasks({ filterName }) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken.getAccessToken()}`,
         Timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       },
     })

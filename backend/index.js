@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const taskRoutes = require("./routes/tasks");
 const authRoutes = require("./routes/auth");
-const authMiddleware = require("./middleware/authmiddleware");
 
 const app = express();
 const port = process.env.POST || 5000;
