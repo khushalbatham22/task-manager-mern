@@ -8,6 +8,7 @@ import {
   Container,
   Stack,
 } from "@mui/material";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import useLoginRegister from "../../hooks/useLoginRegister";
 
@@ -18,7 +19,7 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const { handleOnLoginSubmit } = useLoginRegister();
+  const { handleOnLoginSubmit, handleRecaptchaChange } = useLoginRegister();
 
   return (
     <Container maxWidth="xs">
@@ -83,6 +84,13 @@ function Login() {
                   size="small"
                 />
               )}
+            />
+
+            <ReCAPTCHA
+              style={{ width: "100%" }}
+              name="recaptcha"
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              onChange={handleRecaptchaChange}
             />
 
             <Button

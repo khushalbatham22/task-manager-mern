@@ -2,6 +2,7 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Box, Button, TextField, Typography, Grid } from "@mui/material";
 import useLoginRegister from "../../hooks/useLoginRegister";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function Registration() {
   const {
@@ -11,7 +12,8 @@ function Registration() {
     formState: { errors },
   } = useForm();
 
-  const { handleOnRegistrationSubmit } = useLoginRegister();
+  const { handleOnRegistrationSubmit, handleRecaptchaChange } =
+    useLoginRegister();
 
   const password = watch("password");
 
@@ -105,6 +107,15 @@ function Registration() {
                   helperText={errors.confirmPassword?.message}
                 />
               )}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <ReCAPTCHA
+              style={{ width: "100%" }}
+              name="recaptcha"
+              sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+              onChange={handleRecaptchaChange}
             />
           </Grid>
 

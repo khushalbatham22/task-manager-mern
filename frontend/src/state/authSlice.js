@@ -26,7 +26,7 @@ export const authSlice = createSlice({
 export default authSlice.reducer;
 export const { loginSuccess, setMessage } = authSlice.actions;
 
-const API_URL = process.env.API_URL || "http://localhost:5000/api";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
 
 export function logIn({ email, password, callBack }) {
   return (dispatch) => {
